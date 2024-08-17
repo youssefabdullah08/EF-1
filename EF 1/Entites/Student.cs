@@ -11,6 +11,9 @@ namespace EF_1.Entites
         public int Id { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
+        public Dept Dept { get; set; }
+
+        public List<Stdcrs> Stdcrs { get; set; }
     }
 
 }

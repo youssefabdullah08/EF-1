@@ -11,6 +11,10 @@ namespace EF_1.Entites
         public int InstructorId { get; set; }
         public string FullName { get; set; }
         public string Email { get; set; }
+        public int DeptId { get; set; }
+        public Dept Dept { get; set; }
+
+        public ICollection<Crsins> Crsins { get; set; }
     }
 
 }

@@ -23,7 +23,39 @@ namespace EF_1.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=.; database=ITI_EF; Trusted_Connection=True; TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("server= .; database=ITI_EF; Trusted_Connection=True; TrustServerCertificate=True;");
+
+
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Crsins>().HasKey(c => new { c.InstructorId, c.CoresesId });
+
+            modelBuilder.Entity<Crsins>()
+                .HasOne(c => c.Instructor)
+                .WithMany(i => i.Crsins)
+                .HasForeignKey(c => c.InstructorId);
+
+            modelBuilder.Entity<Crsins>()
+                .HasOne(c => c.coreses)
+                .WithMany()
+                .HasForeignKey(c => c.CoresesId);
+
+            modelBuilder.Entity<Instructor>()
+                .HasOne(i => i.Dept)
+                .WithMany(d => d.Instructors)
+                .HasForeignKey(i => i.DeptId);
+
+
+            modelBuilder.Entity<Stdcrs>()
+                .HasOne(c => c.Corese)
+                .WithMany(i => i.Stdcrs)
+                .HasForeignKey(c => c.Coreseid);
+
+            modelBuilder.Entity<Stdcrs>()
+                .HasOne(c => c.Student)
+                .WithMany()
+                .HasForeignKey(c => c.Studentid);
         }
     }
 }

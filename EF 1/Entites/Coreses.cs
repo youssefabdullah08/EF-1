@@ -17,5 +17,11 @@ namespace EF_1.Entites
         public string Title { get; set; }
 
         public int Credits { get; set; }
+
+        public Topic Topic { get; set; }
+
+        public ICollection<Crsins> Crsins { get; set; }
+
+        public List<Stdcrs> Stdcrs { get; set; }
     }
 }
